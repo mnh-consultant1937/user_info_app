@@ -25,10 +25,9 @@ def add_user():
     user = User(username=username, email=email, password=password, info=info)
     users_collection.insert_one(user.dict())
     messagebox.showinfo("Success", f"User {username} added successfully!")
+    git_commit_push(f"Add user {username}")
     refresh_users()
     clear_fields()
-
-    git_commit_push(f"Add user {username}")
 
 def update_user():
     selected = user_list.focus()
@@ -55,9 +54,8 @@ def update_user():
         }}
     )
     messagebox.showinfo("Success", f"User {username} updated successfully!")
-    refresh_users()
-
     git_commit_push(f"Update user {username}")
+    refresh_users()
 
 
 def delete_user():
@@ -71,9 +69,8 @@ def delete_user():
     if confirm:
         users_collection.delete_one({"username": username})
         messagebox.showinfo("Deleted", f"User {username} deleted successfully!")
+        git_commit_push(f"Delete user {username}")
         refresh_users()
-
-    git_commit_push(f"Delete user {username}")
 
 
 def refresh_users():
