@@ -1,0 +1,131 @@
+Steps:
+mkdir user_info_app
+cd user_info_app
+
+python3 -m venv venv
+source venv/bin/activate   # On Mac/Linux
+# venv\Scripts\activate    # On Windows
+
+pip install (library or module name)
+pymongo
+dnspython
+python-dotenv
+fastapi
+uvicorn
+pydantic
+
+
+pip freeze > requirements.txt
+pip install -r requirements.txt
+
+
+mongodb atlas credentials:
+username: nakibkhan94_db_user
+password: XcvzMjpoLvlvVQKM
+
+connection string: 
+mongodb+srv://nakibkhan94_db_user:XcvzMjpoLvlvVQKM@cluster0.3ktyybm.mongodb.net/user_database?retryWrites=true&w=majority&appName=Cluster0
+
+database name: user_database
+collection name: users
+
+
+
+touch main.py db.py models.py .env
+
+
+Git Integration:
+git --version
+
+Git configuration (once per machine)
+git config --global user.name "MD NAKIB HOSAN"
+git config --global user.email "mnh.consultant@outlook.com.au"
+
+git config --global --list
+
+git config --global init.defaultBranch main
+
+git config --global core.editor "code --wait"
+
+Generate & Add SSH Key (one-time setup)
+ssh-keygen -t ed25519 -C "mnh.consultant@outlook.com.au"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+pbcopy < ~/.ssh/id_ed25519.pub
+
+cat ~/.ssh/id_ed25519.pub
+
+Install GitHub CLI (only once)
+brew install gh
+gh auth login
+
+
+
+
+Initialize git
+git init
+git add .
+git commit -m "Initial commit"
+
+Create a new repo on GitHub (e.g., user_info_app)
+Connect and push:
+git remote add origin https://github.com/mnh-consultant1937/user_info_app.git
+git branch -M main
+#git pull origin main --rebase
+git push -u origin main
+
+
+***Create a New Repository on GitHub (from terminal):
+mkdir my-app && cd my-app
+git init
+echo "# My App" > README.md
+git add .
+git commit -m "Initial commit"
+
+Create a GitHub repo via CLI:
+git init
+git add .
+git commit -m "Initial commit"
+
+gh repo create user_info_app --public --source=. --remote=origin --push
+This will:
+✅ Create a repo on GitHub
+✅ Add origin remote automatically
+✅ Push your code
+
+
+
+### Correct Process
+mkdir folder-name
+cd folder-name
+
+touch file1 file2 file3 ...
+
+git init
+git add .
+git commit -m "Your message"
+git branch -M main
+gh repo create practice-repo2 --public --source=. --remote=origin --push
+
+
+Normal Workflow (daily usage):
+Check repo status:
+git status
+
+Stage changes:
+git add .
+
+Commit:
+git commit -m "Your message"
+git branch -M main
+
+Push to GitHub:
+git push
+
+Pull latest changes
+git pull
+
+Clone Repos (instead of downloading zip):
+gh repo clone username/repo-name
+or using Git directly:
+git clone git@github.com:username/repo-name.git
