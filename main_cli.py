@@ -1,5 +1,12 @@
+import os
 from db import users_collection
 from models import User
+
+def git_commit_push(message: str):
+    """Automatically commit and push changes to GitHub"""
+    os.system("git add .")
+    os.system(f'git commit -m "{message}"')
+    os.system("git push origin main")
 
 def add_user():
     """Add a new user to the database"""
@@ -12,6 +19,8 @@ def add_user():
     user = User(username=username, email=email, password=password, info=info)
     users_collection.insert_one(user.dict())
     print(f"✅ User {username} saved successfully!")
+
+    git_commit_push(f"Add user {username}")
 
 
 def view_users():
@@ -46,6 +55,8 @@ def update_user():
     )
     print(f"✅ User {username} updated successfully!")
 
+    git_commit_push(f"Update user {username}")
+
 
 def delete_user():
     """Delete a user from the database"""
@@ -54,6 +65,7 @@ def delete_user():
 
     if result.deleted_count > 0:
         print(f"🗑️ User {username} deleted successfully!")
+        git_commit_push(f"Delete user {username}")
     else:
         print("❌ User not found.")
 

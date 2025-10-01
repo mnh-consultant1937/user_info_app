@@ -1,9 +1,16 @@
+import os
 import tkinter as tk
 from tkinter import messagebox, simpledialog, ttk
 from db import users_collection
 from models import User
 
 # ----------------- Functions -----------------
+
+def git_commit_push(message: str):
+    """Automatically commit and push changes to GitHub"""
+    os.system("git add .")
+    os.system(f'git commit -m "{message}"')
+    os.system("git push origin main")
 
 def add_user():
     username = username_entry.get()
@@ -21,6 +28,7 @@ def add_user():
     refresh_users()
     clear_fields()
 
+    git_commit_push(f"Add user {username}")
 
 def update_user():
     selected = user_list.focus()
@@ -49,6 +57,8 @@ def update_user():
     messagebox.showinfo("Success", f"User {username} updated successfully!")
     refresh_users()
 
+    git_commit_push(f"Update user {username}")
+
 
 def delete_user():
     selected = user_list.focus()
@@ -62,6 +72,8 @@ def delete_user():
         users_collection.delete_one({"username": username})
         messagebox.showinfo("Deleted", f"User {username} deleted successfully!")
         refresh_users()
+
+    git_commit_push(f"Delete user {username}")
 
 
 def refresh_users():
